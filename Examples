@@ -1,0 +1,10 @@
+curl --location --request POST 'http://<YOUR_MOBILE_DEVICE_IP>:<PORT>/sanitize' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "code": "var firstName = \u0027John\u0027; console.log(firstName);",
+  "config": {
+    "var_pattern": "(?<=\\bvar\\s|let\\s|const\\s)\\w+",
+    "str_pattern": "(?<!['\"])(['\"]([^'\n]*?)['\"])(?!['\"])",
+    "identifier_pattern": "\\b\\w+\\b"
+  }
+}'
